@@ -21,7 +21,7 @@ public final class ConsoleCommands extends JavaPlugin {
         getCommand("loopcmd").setTabCompleter(new loopcmd());
         getCommand("ccreload").setExecutor(new ccreload());
         
-        Metrics metrics = new Metrics(this, 14662); // By Man297
+        Metrics metrics = new Metrics(this, 14662); // bStats support by Man297
     }
 
     @Override

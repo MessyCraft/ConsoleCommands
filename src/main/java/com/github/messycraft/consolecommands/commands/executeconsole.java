@@ -7,7 +7,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.Plugin;
 
 import java.util.List;
-import java.util.Locale;
 
 import static org.bukkit.Bukkit.*;
 
