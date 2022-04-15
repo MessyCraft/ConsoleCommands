@@ -5,11 +5,11 @@
         <img alt="Maven Build" src="https://github.com/MessyCraft/ConsoleCommands/actions/workflows/maven.yml/badge.svg"/>
     </a>
 </div>
-
+  
 
 **English edition of ConsoleCommands** | [中文版 ConsoleCommands](https://github.com/MessyCraft/ConsoleCommands-zh_CN/)
 
-
+  
 Commands:
 
 /executeconsole: execute commands as console
