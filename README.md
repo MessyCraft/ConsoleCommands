@@ -19,7 +19,7 @@ Commands:
 /executeplayer: execute commands as player
 
     alias: /execp,/fsudo
-    Usage: /executeplayer <player> <command>
+    usage: /executeplayer <player> <command>
     
 /loopcmd: loop commands
 
