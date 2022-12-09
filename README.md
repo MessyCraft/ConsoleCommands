@@ -1,6 +1,6 @@
 # ConsoleCommands
 ### A minecraft bukkit plugin allows you to execute commands as player or server console.
-![https://github.com/MessyCraft/ConsoleCommands/actions/workflows/maven.yml/badge.svg](https://github.com/MessyCraft/ConsoleCommands/actions/workflows/maven.yml)
+![Maven Build](https://github.com/MessyCraft/ConsoleCommands/actions/workflows/maven.yml)
     <a href="https://github.com/MessyCraft/ConsoleCommands/actions/workflows/maven.yml">
         <img alt="Maven Build" src="https://github.com/MessyCraft/ConsoleCommands/actions/workflows/maven.yml/badge.svg"/>
     </a>
