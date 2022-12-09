@@ -4,7 +4,9 @@
     <img alt="Maven Build" src="https://github.com/MessyCraft/ConsoleCommands/actions/workflows/maven.yml/badge.svg"/>
 </a>
 
-- [x] Bukkit and BungeeCord Compability
+
+- [x] Bukkit Compability
+- [ ] BungeeCord Compability  
 
 **English edition of ConsoleCommands** | [中文版 ConsoleCommands](https://github.com/MessyCraft/ConsoleCommands-zh_CN/)
 
