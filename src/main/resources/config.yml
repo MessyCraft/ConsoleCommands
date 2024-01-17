@@ -10,11 +10,11 @@
 times_limit: 100
 
 
-# Security config / 安全配置
+# Security configuration / 安全配置
 
-# Whether allow this plugin to execute LuckPerms command as console or player
-# If allowed, player has ConsoleCommands permission can access LuckPerms to get permission for entire Bungeecord server!
-# if your server is not Bungeecord server or don't have LuckPerms, you can ignore this config.
+# Whether to allow this plugin to execute LuckPerms command as console or player
+# If allowed, player that have ConsoleCommands permission can access LuckPerms to get permissions for entire Bungeecord server!
+# if your server is not a Bungeecord server or not having LuckPerms, you can ignore this config.
 # 是否允许本插件以控制台/玩家的身份执行 LuckPerms 命令 默认禁止
 # 有可能获得整个 BungeeCord 群组服的权限, 没有 Bungeecord 或没有 LuckPerms 的服务器请忽视
 allow_lp_command: false

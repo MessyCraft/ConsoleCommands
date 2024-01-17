@@ -13,72 +13,91 @@ import java.util.regex.Pattern;
 
 import static org.bukkit.Bukkit.getServer;
 
-public class loopcmd implements CommandExecutor, TabExecutor {
+public class loopcmd implements CommandExecutor, TabExecutor
+{
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
+    public boolean onCommand(CommandSender sender, Command command, String s, String[] args)
+    {
         String arg = new String();
-        for (int i=1;i<args.length;i++) {
+        for (int i=1;i<args.length;i++)
+        {
             arg = arg + args[i] + " ";
         }
 
         // Anti-crash
         List<String> noloop = new ArrayList<>();
-        for (int i=0;i<9;i++) {
+        for (int i=0;i<9;i++)
+        {
             noloop.add("loopcmd " + i);
         }
-        if (containsIgnoreCase(arg, noloop)) {
-            sender.sendMessage("&cDon't use /loopcmd to execute /loopcmd!");
+        if (containsIgnoreCase(arg, noloop))
+        {
+            sender.sendMessage("&cDon't recursion execute this command.");
             return false;
         }
 
         // Loop commands
-
-        if (args.length < 2) {
+        if (args.length < 2)
+        {
             sender.sendMessage("§eUsage: §6/loopcmd <looptimes> <command>");
         }
-        else {
+        else
+        {
             Pattern pattern = Pattern.compile("^[-\\+]?[\\d]*$");
-            if (pattern.matcher(args[0]).matches() && !args[0].equals("+") && !args[0].equals("-")) {
+            if (pattern.matcher(args[0]).matches() && !args[0].equals("+") && !args[0].equals("-"))
+            {
                 int looptimes = Integer.parseInt(args[0]);
-                if (looptimes > 0) {
-                    if (sender.hasPermission("consolecommands.loopcmd")) {
+                if (looptimes > 0)
+                {
+                    if (sender.hasPermission("consolecommands.loopcmd"))
+                    {
                         Plugin mainclass = ConsoleCommands.getProvidingPlugin(ConsoleCommands.class);
-                        if (looptimes <= mainclass.getConfig().getInt("times_limit") || mainclass.getConfig().getInt("times_limit") == -1) {
-                            if (getServer().dispatchCommand(sender, arg)) {
-                                for (int i = 1; i < looptimes; i++) {
+                        if (looptimes <= mainclass.getConfig().getInt("times_limit") || mainclass.getConfig().getInt("times_limit") == -1)
+                        {
+                            if (getServer().dispatchCommand(sender, arg))
+                            {
+                                for (int i = 1; i < looptimes; i++)
+                                {
                                     getServer().dispatchCommand(sender, arg);
                                 }
-                                sender.sendMessage("§eCommand §6" + arg + "§ecycles §b" + looptimes + " §etimes");
-                            } else {
+                                sender.sendMessage("§eExecuting command §6" + arg + "§eby §b" + looptimes + " §etimes.");
+                            }
+                            else
+                            {
                                 sender.sendMessage("§eCommand §6" + arg + "§enot found");
                             }
                         }
-                        else {
-                            sender.sendMessage("§4[ERROR] §eloopcmd times limit: §6" + mainclass.getConfig().getInt("times_limit")
-                                    + "§e. §cYou can't cycle the command §6" + looptimes + " §ctimes.");
+                        else
+                        {
+                            sender.sendMessage("&c You are trying to execute that command &6" + looptimes + " &etimes, but you can't execute commands beyond &6" + mainclass.getConfig().getInt("times_limit") + " §etimes.");
                         }
-                    } else {
-                        sender.sendMessage("§cYou don't have permission");
+                    }
+                    else
+                    {
+                        sender.sendMessage("§cYou don't have permission to do that.");
                     }
                 }
-                else {
+                else
+                {
                     sender.sendMessage("§eUsage: §6/loopcmd <looptimes> <command>");
-                    sender.sendMessage("§c<looptimes> Required a integer! ");
+                    sender.sendMessage("§c<looptimes> Requires an integer! ");
                 }
             }
-            else {
+            else
+            {
                 sender.sendMessage("§eUsage: §6/loopcmd <looptimes> <command>");
-                sender.sendMessage("§c<looptimes> Requires a integer! ");
+                sender.sendMessage("§c<looptimes> Requires an integer! ");
             }
         }
         return false;
     }
 
     // Tab complete
-
     @Override
-    public List<String> onTabComplete(CommandSender sender, Command command, String s, String[] args) {
-        if (args.length == 1) {
+    public List<String> onTabComplete(CommandSender sender, Command command, String s, String[] args)
+    {
+        if (args.length == 1)
+        {
             List<String> list = new ArrayList<>();
             list.add("1");
             list.add("2");
@@ -94,11 +113,14 @@ public class loopcmd implements CommandExecutor, TabExecutor {
         return null;
     }
 
-    public boolean containsIgnoreCase(String s, List<String> list) {
+    public boolean containsIgnoreCase(String s, List<String> list)
+    {
         boolean c = false;
         s = s.toLowerCase();
-        for (int i=0;i<list.size();i++) {
-            if (s.contains(list.get(i))) {
+        for (int i=0;i<list.size();i++)
+        {
+            if (s.contains(list.get(i)))
+            {
                 c = true;
                 break;
             }
