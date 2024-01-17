@@ -10,23 +10,31 @@ import java.util.List;
 
 import static org.bukkit.Bukkit.*;
 
-public class executeconsole implements CommandExecutor {
+public class executeconsole implements CommandExecutor
+{
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
+    {
         String arg = new String();
-        for (String s : args) {
+        for (String s : args)
+        {
             arg = arg + s + " ";
         }
-        if (args.length == 0) {
+        if (args.length == 0)
+        {
             sender.sendMessage("§eUsage: §6/executeconsole <commands>");
         }
-        else {
-            if (sender.hasPermission("consolecommands.execute.console")) {
+        else
+        {
+            if (sender.hasPermission("consolecommands.execute.console"))
+            {
                 Plugin mainclass = ConsoleCommands.getProvidingPlugin(ConsoleCommands.class);
-                if (mainclass.getConfig().getBoolean("allow_lp_command")) {
+                if (mainclass.getConfig().getBoolean("allow_lp_command"))
+                {
                     cmdBannedC(arg, sender);
                 }
-                else {
+                else
+                {
                     Boolean allow = true;
                     if (arg.startsWith("lp")) allow = false;
                     if (allow && arg.startsWith("luckperms")) allow = false;
@@ -34,40 +42,51 @@ public class executeconsole implements CommandExecutor {
                     if (allow && arg.startsWith("perms")) allow = false;
                     if (allow && arg.startsWith("permission")) allow = false;
                     if (allow && arg.startsWith("permissions")) allow = false;
-                    if (allow) {
+                    if (allow)
+                    {
                         cmdBannedC(arg, sender);
                     }
-                    else {
+                    else
+                    {
                         sender.sendMessage("§cYou can't use luckperms-command as console!");
                     }
                 }
             }
-            else {
-                sender.sendMessage("§cYou don't have permission");
+            else
+            {
+                sender.sendMessage("§cYou don't have permission to do that.");
             }
         }
         return false;
     }
 
-    public void cmdBannedC(String cmd, CommandSender sender) {
+    // Well, that was not very intuitive.
+    // todo: format function names
+    public void cmdBannedC(String cmd, CommandSender sender)
+    {
         Plugin m = ConsoleCommands.getProvidingPlugin(ConsoleCommands.class);
         List<String> list = m.getConfig().getStringList("bannedcmd_asconsole");
         boolean banned = false;
-        for (int i=0;i<list.size();i++) {
-            if (cmd.toLowerCase().startsWith(list.get(i).toLowerCase() + " ")) {
+        for (int i=0;i<list.size();i++)
+        {
+            if (cmd.toLowerCase().startsWith(list.get(i).toLowerCase() + " "))
+            {
                 banned = true;
                 break;
             }
         }
-        if (!banned) {
-            if (getServer().dispatchCommand(getConsoleSender(), cmd)) {
-                sender.sendMessage("§eSuccessful executed §6" + cmd + "§eas console");
+        if (!banned)
+        {
+            if (getServer().dispatchCommand(getConsoleSender(), cmd))
+            {
+                sender.sendMessage("§eSuccessful executed §6" + cmd + "§eas console.");
             } else {
-                sender.sendMessage("§eCommand §6" + cmd + "§enot found");
+                sender.sendMessage("§eCommand §6" + cmd + "§ewas not found.");
             }
         }
-        else {
-            sender.sendMessage("§cYou can't execute the command as console.");
+        else
+        {
+            sender.sendMessage("§cYou cannot execute this command as console.");
         }
     }
 }
